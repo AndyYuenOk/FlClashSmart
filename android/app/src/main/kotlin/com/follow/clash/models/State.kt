@@ -7,7 +7,7 @@ data class SharedState(
     val startTip: String = "Starting VPN...",
     val stopTip: String = "Stopping VPN...",
     val crashlytics: Boolean = true,
-    val currentProfileName: String = "FlClash",
+    val currentProfileName: String = "FlClash Smart",
     val stopText: String = "Stop",
     val onlyStatisticsProxy: Boolean = false,
     val vpnOptions: VpnOptions? = null,
@@ -20,3 +20,4 @@ data class SetupParams(
     @SerializedName("selected-map")
     val selectedMap: Map<String, String>,
 )
+

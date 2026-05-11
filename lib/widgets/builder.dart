@@ -44,7 +44,7 @@ class FloatingActionButtonExtendedBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isExtended =
-        CommonScaffoldFabExtendedProvider.of(context)?.isExtended ?? true;
+        CommonScaffoldFabExtendedProvider.of(context)?.isExtended ?? false;
     return builder(isExtended);
   }
 }

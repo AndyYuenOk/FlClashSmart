@@ -50,7 +50,7 @@ class CommonScaffold extends StatefulWidget {
 class CommonScaffoldState extends State<CommonScaffold> {
   late final ValueNotifier<AppBarState> _appBarState;
   final ValueNotifier<bool> _loadingNotifier = ValueNotifier(false);
-  final ValueNotifier<bool> _isFabExtendedNotifier = ValueNotifier(true);
+  final ValueNotifier<bool> _isFabExtendedNotifier = ValueNotifier(false);
   final ValueNotifier<List<String>> _keywordsNotifier = ValueNotifier([]);
   final _textController = TextEditingController();
 
