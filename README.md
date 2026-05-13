@@ -10,13 +10,21 @@
 
 只有 Android ARMv8 版本，其他版本不会开发
 
-适合节点不稳的场景，如果节点平时比较稳定，不建议使用 smart
+适合节点不稳的分组，如果节点平时比较稳定，不建议使用 smart
 
-可能会强制切换节点，实测 chrome 下载大文件时，可能会强制切换节点导致下载失败
+对于节点不稳的分组，经常超时，速度慢，可以改善使用体验，但是会经常跳 IP
+
+smart 分组可能会带来的影响。下载大文件时，可能会强制切换节点导致下载失败。IP 跳动可能会频繁人机验证。
+
+对于跳 IP 的影响因人而异，自用是全局 smart，TG ChatGPT Claude 等一系列账号，一般常用老账号没有风险
+
+FlClash 代理不会显示 smart 分组
+
+如果在 web 面板 smart 分组选择节点，需要重启内核才能取消固定。
 
 ## 查看节点和日志
 
-FlClash 代理不会显示 smart 分组
+使用 web 面板查看 smart 分组
 
 需要用 [MetaCubeXD](https://metacubex.github.io/metacubexd) 查看
 
