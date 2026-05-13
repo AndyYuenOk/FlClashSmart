@@ -169,8 +169,8 @@ class Utils {
     if (minor1 != minor2) {
       return minor1.compareTo(minor2);
     }
-    int patch1 = v1.length > 2 ? int.parse(v1[2]) : 0;
-    int patch2 = v2.length > 2 ? int.parse(v2[2]) : 0;
+    int patch1 = v1.length > 2 ? int.parse(v1[2].split('-')[0]) : 0;
+    int patch2 = v2.length > 2 ? int.parse(v2[2].split('-')[0]) : 0;
     if (patch1 != patch2) {
       return patch1.compareTo(patch2);
     }
