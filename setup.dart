@@ -217,7 +217,7 @@ class Build {
         'go',
         'build',
         '-ldflags=-w -s',
-        '-tags=$tags',
+        '-tags=${target == Target.android ? '$tags,cmfa' : tags}',
         if (isLib) '-buildmode=c-shared',
         '-o',
         realOutPath,
