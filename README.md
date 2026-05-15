@@ -26,7 +26,20 @@
 
   - IP 跳动可能会频繁人机验证。
 
-- 对于 IP 比较严格的场景，直接添加单独分组，使用 url-test 或者 select
+- 对于 IP 比较严格的场景，直接添加单独分组，使用 url-test 或者 selector
+
+## 多订阅分组策略推荐
+
+- Proxy (selector) Fallback, Auto_Group_1, Auto_Group_2, Auto_Group_3, Auto_Group_4 默认选择 Fallback
+- Fallback (fallback) Auto_Primary, Auto_Backup 主用失败自动切换到备用
+- Auto_Primary (smart) Auto_Group_1, Auto_Group_2 主用智选
+- Auto_Backup (smart) Auto_Group_3, Auto_Group_4 备用智选
+- Auto_Group_1 (smart) Node_1, Node_2 主用节点分组1，可以放周期性订阅
+- Auto_Group_2 (smart) Node_1, Node_2 主用节点分组2
+- Auto_Group_3 (smart) Node_1, Node_2 备用节点分组1，可以放不限时订阅
+- Auto_Group_4 (smart) Node_1, Node_2 备用节点分组2
+
+smart 策略组会同时使用多个节点，好处失败立即切换，坏处会跳 IP
 
 ## 查看节点和日志
 
