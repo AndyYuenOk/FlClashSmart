@@ -12,7 +12,7 @@
 	branch = main
 
 
-[submodule "core/mihomo-smart"]
-	path = core/mihomo-smart
-	url = https://github.com/vernesong/mihomo
+[submodule "core/FlClashSmart-Core"]
+	path = core/FlClashSmart-Core
+	url = https://github.com/AndyYuenOk/FlClashSmart-Core.git
 	branch = Alpha
