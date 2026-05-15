@@ -57,6 +57,76 @@ proxy-providers:
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
+proxy-groups:
+  - name: Proxy
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png
+    type: select
+    proxies:
+      - Fallback
+      - Auto_主用订阅名称
+      - Auto_备用订阅名称
+  - name: Fallback
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Auto.png
+    type: fallback
+    proxies:
+      - Auto_Primary
+      - Auto_Backup
+    url: https://www.gstatic.com/generate_204
+  - name: Auto_Primary
+    type: smart
+    proxies:
+      - Auto_主用订阅名称
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Auto.png
+    uselightgbm: true
+  - name: Auto_Backup
+    type: smart
+    proxies:
+      - Auto_备用订阅名称
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Auto.png
+    uselightgbm: true
+  - name: Auto_主用订阅名称
+    type: smart
+    use:
+      - 主用订阅名称
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Auto.png
+    uselightgbm: true
+  - name: Auto_备用订阅名称
+    type: smart
+    use:
+      - 备用订阅名称
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Auto.png
+    uselightgbm: true
+  - name: AI
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
+    type: select
+    include-all: true
+    proxies:
+      - Proxy
+  - name: Netflix
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Netflix.png
+    type: select
+    include-all: true
+    proxies:
+      - Proxy
+  - name: Microsoft
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Microsoft.png
+    type: select
+    include-all: true
+    proxies:
+      - Proxy
+      - DIRECT
+  - name: Reject
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Adblock.png
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: Final
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Final.png
+    type: select
+    proxies:
+      - Proxy
+      - DIRECT
 rules:
   - RULE-SET,lancidr,DIRECT
   - RULE-SET,private,DIRECT
@@ -136,76 +206,6 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     path: ./rules/lancidr.yaml
-proxy-groups:
-  - name: Proxy
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png
-    type: select
-    proxies:
-      - Fallback
-      - Auto_主用订阅名称
-      - Auto_备用订阅名称
-  - name: Fallback
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Auto.png
-    type: fallback
-    proxies:
-      - Auto_Primary
-      - Auto_Backup
-    url: https://www.gstatic.com/generate_204
-  - name: Auto_Primary
-    type: smart
-    proxies:
-      - Auto_主用订阅名称
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Auto.png
-    uselightgbm: true
-  - name: Auto_Backup
-    type: smart
-    proxies:
-      - Auto_备用订阅名称
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Auto.png
-    uselightgbm: true
-  - name: Auto_主用订阅名称
-    type: smart
-    use:
-      - 主用订阅名称
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Auto.png
-    uselightgbm: true
-  - name: Auto_备用订阅名称
-    type: smart
-    use:
-      - 备用订阅名称
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Auto.png
-    uselightgbm: true
-  - name: AI
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
-    type: select
-    include-all: true
-    proxies:
-      - Proxy
-  - name: Netflix
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Netflix.png
-    type: select
-    include-all: true
-    proxies:
-      - Proxy
-  - name: Microsoft
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Microsoft.png
-    type: select
-    include-all: true
-    proxies:
-      - Proxy
-      - DIRECT
-  - name: Reject
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Adblock.png
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
-  - name: Final
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Final.png
-    type: select
-    proxies:
-      - Proxy
-      - DIRECT
 ```
 
 ## 查看节点和日志
