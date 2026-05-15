@@ -127,24 +127,6 @@ proxy-groups:
     proxies:
       - Proxy
       - DIRECT
-rules:
-  - RULE-SET,lancidr,DIRECT
-  - RULE-SET,private,DIRECT
-  - RULE-SET,reject,Reject
-  - GEOSITE,category-ai-!cn,AI
-  - GEOSITE,anthropic,AI
-  - GEOSITE,microsoft,Microsoft
-  - GEOSITE,netflix,Netflix
-  - RULE-SET,google,Proxy
-  - RULE-SET,telegramcidr,Proxy
-  - RULE-SET,apple,DIRECT
-  - RULE-SET,icloud,DIRECT
-  - RULE-SET,proxy,Proxy
-  - RULE-SET,direct,DIRECT
-  - RULE-SET,cncidr,DIRECT
-  - GEOIP,LAN,DIRECT
-  - GEOIP,CN,DIRECT
-  - MATCH,Final
 rule-providers:
   reject:
     url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
@@ -206,6 +188,24 @@ rule-providers:
     interval: 86400
     behavior: ipcidr
     path: ./rules/lancidr.yaml
+rules:
+  - RULE-SET,lancidr,DIRECT
+  - RULE-SET,private,DIRECT
+  - RULE-SET,reject,Reject
+  - GEOSITE,category-ai-!cn,AI
+  - GEOSITE,anthropic,AI
+  - GEOSITE,microsoft,Microsoft
+  - GEOSITE,netflix,Netflix
+  - RULE-SET,google,Proxy
+  - RULE-SET,telegramcidr,Proxy
+  - RULE-SET,apple,DIRECT
+  - RULE-SET,icloud,DIRECT
+  - RULE-SET,proxy,Proxy
+  - RULE-SET,direct,DIRECT
+  - RULE-SET,cncidr,DIRECT
+  - GEOIP,LAN,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,Final
 ```
 
 ## 查看节点和日志
