@@ -30,16 +30,12 @@
 
 ## 多订阅分组策略推荐
 
-- Proxy (selector) Fallback, Auto_Group_1, Auto_Group_2, Auto_Group_3, Auto_Group_4 默认选择 Fallback
-- Fallback (fallback) Auto_Primary, Auto_Backup 主用失败自动切换到备用
-- Auto_Primary (smart) Auto_Group_1, Auto_Group_2 主用智选
-- Auto_Backup (smart) Auto_Group_3, Auto_Group_4 备用智选
-- Auto_Group_1 (smart) Node_1, Node_2 主用节点分组1，可以放周期性订阅
-- Auto_Group_2 (smart) Node_1, Node_2 主用节点分组2
-- Auto_Group_3 (smart) Node_1, Node_2 备用节点分组1，可以放不限时订阅
-- Auto_Group_4 (smart) Node_1, Node_2 备用节点分组2
-
 ```
+# Proxy 默认选择 Fallback
+# 主用失败自动切换到备用
+# 主用节点分组，可以放周期性订阅
+# 备用节点分组，可以放不限时订阅
+
 # 推荐使用 proxy-providers，直接填写订阅链接就能使用
 # 只有基础配置分组，如果需要自行添加
 proxy-providers:
