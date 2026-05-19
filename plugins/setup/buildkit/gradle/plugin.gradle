@@ -6,15 +6,21 @@
 // It adds a task that runs build_tool android before mergeNativeLibs.
 
 def buildkitDir = file("${project.projectDir}/../buildkit").absolutePath
-def launcher = "${buildkitDir}/run_build_tool.sh"
+def isWindows = org.apache.tools.ant.taskdefs.condition.Os.isFamily(org.apache.tools.ant.taskdefs.condition.Os.FAMILY_WINDOWS)
+def launcher = isWindows ? "${buildkitDir}/run_build_tool.cmd" : "${buildkitDir}/run_build_tool.sh"
 def projectRoot = file("${buildkitDir}/../../..").absolutePath
 def androidArch = System.getenv('ANDROID_ARCH')
 def androidNdk = System.getenv('ANDROID_NDK')
 def archArgs = androidArch ? ['--arch', androidArch] : []
 
 task buildGoCore(type: Exec) {
-    workingDir buildkitDir
-    commandLine 'bash', launcher, 'android', *archArgs
+    if (isWindows) {
+        workingDir projectRoot
+        commandLine 'cmd', '/c', launcher, 'android', *archArgs
+    } else {
+        workingDir buildkitDir
+        commandLine 'bash', launcher, 'android', *archArgs
+    }
 
     environment 'ANDROID_NDK', androidNdk
     environment 'APP_ENV', project.hasProperty('appEnv') ? project.appEnv : 'pre'

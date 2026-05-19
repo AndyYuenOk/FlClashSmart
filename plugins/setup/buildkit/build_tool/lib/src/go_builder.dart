@@ -14,9 +14,7 @@ final _log = Logger('go_builder');
 
 String _resolveCc(Target target) {
   final ndk = Environment.androidNdk;
-  final prebuiltDir = Directory(
-    p.join(ndk, 'toolchains', 'llvm', 'prebuilt'),
-  );
+  final prebuiltDir = Directory(p.join(ndk, 'toolchains', 'llvm', 'prebuilt'));
   final entries = prebuiltDir
       .listSync()
       .where((e) => !p.basename(e.path).startsWith('.'))
@@ -49,10 +47,7 @@ class GoBuilder {
         : '${config.coreName}${target.executableExtension}';
     final outFile = p.join(outDir, fileName);
 
-    final env = <String, String>{
-      'GOOS': target.goos,
-      'GOARCH': target.goarch,
-    };
+    final env = <String, String>{'GOOS': target.goos, 'GOARCH': target.goarch};
 
     if (target.isLib) {
       env['CGO_ENABLED'] = '1';
@@ -65,7 +60,7 @@ class GoBuilder {
     final args = [
       'build',
       '-ldflags=${config.goLdflags}',
-      '-tags=${config.tags}',
+      '-tags=${target.goos == 'android' ? '${config.tags},cmfa' : config.tags}',
       if (target.isLib) '-buildmode=c-shared',
       '-o',
       outFile,
@@ -73,19 +68,25 @@ class GoBuilder {
 
     _log.info(kDoubleSeparator);
     _log.info(
-        'Building Go core: $target ${target.isLib ? "(CGO, c-shared)" : "(standalone)"}');
+      'Building Go core: $target ${target.isLib ? "(CGO, c-shared)" : "(standalone)"}',
+    );
     _log.info(kSeparator);
 
-    await runCommandStream('go', args,
-        workingDirectory: _corePath, environment: env);
+    await runCommandStream(
+      'go',
+      args,
+      workingDirectory: _corePath,
+      environment: env,
+    );
 
     if (target.isLib && target.abi != null) {
       await _adjustAndroidOutput(
-          outDir: p.join(_outputPath, target.platformDir),
-          abiDir: target.abi!,
-          archName: target.abi!,
-          libPath: outFile,
-          libName: fileName);
+        outDir: p.join(_outputPath, target.platformDir),
+        abiDir: target.abi!,
+        archName: target.abi!,
+        libPath: outFile,
+        libName: fileName,
+      );
     }
 
     _log.info('Built: $outFile');
@@ -105,11 +106,20 @@ class GoBuilder {
     required String libName,
   }) async {
     final includesPath = p.join(outDir, 'includes', archName);
-    final androidCoreMainPath =
-        p.join(rootDir, 'android', 'core', 'src', 'main');
+    final androidCoreMainPath = p.join(
+      rootDir,
+      'android',
+      'core',
+      'src',
+      'main',
+    );
     final jniLibsPath = p.join(androidCoreMainPath, 'jniLibs', abiDir);
-    final cppIncludesPath =
-        p.join(androidCoreMainPath, 'cpp', 'includes', archName);
+    final cppIncludesPath = p.join(
+      androidCoreMainPath,
+      'cpp',
+      'includes',
+      archName,
+    );
 
     ensureDir(jniLibsPath);
     ensureDir(includesPath);
