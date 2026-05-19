@@ -1,9 +1,9 @@
 name: fl_clash
 description: A multi-platform proxy client based on ClashMeta, simple and easy to use, open-source and ad-free.
-publish_to: "none"
-version: 0.8.93+2026051801
+publish_to: 'none'
+version: 0.0.3-flclash-0.8.93-smart-3cffe62
 environment:
-  sdk: ">=3.8.0 <4.0.0"
+  sdk: '>=3.8.0 <4.0.0'
 
 dependencies:
   flutter:
