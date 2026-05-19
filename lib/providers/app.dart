@@ -366,9 +366,7 @@ class NetworkDetection extends _$NetworkDetection
 
   @override
   NetworkDetectionState build() {
-    ref.onDispose(() {
-      _resetCheckSession(null);
-    });
+    ref.onDispose(_cancelTimeoutTimer);
     return const NetworkDetectionState(isLoading: true, ipInfo: null);
   }
 
@@ -387,17 +385,18 @@ class NetworkDetection extends _$NetworkDetection
     if (!isStart && _preIsStart == false && state.ipInfo != null) {
       return;
     }
-    final cancelToken = CancelToken();
-    final version = _resetCheckSession(cancelToken);
+    _cancelToken?.cancel();
+    _cancelToken = CancelToken();
+    _cancelTimeoutTimer();
+    final version = ++_checkVersion;
     commonPrint.log('checkIp start');
     state = state.copyWith(isLoading: true, ipInfo: null);
     _preIsStart = isStart;
-    final res = await request.checkIp(cancelToken: cancelToken);
+    final res = await request.checkIp(cancelToken: _cancelToken);
     commonPrint.log('checkIp res: $res');
 
-    if (!ref.mounted ||
-        version != _checkVersion ||
-        cancelToken != _cancelToken) {
+    if (version != _checkVersion) {
+      state = state.copyWith(isLoading: true, ipInfo: null);
       return;
     }
     final ipInfo = res.data;
@@ -406,15 +405,6 @@ class NetworkDetection extends _$NetworkDetection
       return;
     }
     state = state.copyWith(isLoading: false, ipInfo: ipInfo);
-  }
-
-  int _resetCheckSession(CancelToken? cancelToken) {
-    _cancelTimeoutTimer();
-    final version = ++_checkVersion;
-    final previousCancelToken = _cancelToken;
-    _cancelToken = cancelToken;
-    previousCancelToken?.cancel();
-    return version;
   }
 
   void _delayTimeoutDisplay(int version) {

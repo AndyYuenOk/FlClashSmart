@@ -39,7 +39,7 @@ class CommonFloatingActionButton extends StatelessWidget {
               curve: Curves.easeOutBack,
               child: AnimatedOpacity(
                 duration: midDuration,
-                opacity: isExtended ? 1.0 : 0.0,
+                opacity: isExtended ? 1.0 : 0.4,
                 curve: Curves.linear,
                 child: isExtended
                     ? Padding(

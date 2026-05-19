@@ -13,13 +13,11 @@
 基于ClashMeta的多平台代理客户端，简单易用，开源无广告。
 
 on Desktop:
-
 <p style="text-align: center;">
     <img alt="desktop" src="snapshots/desktop.gif">
 </p>
 
 on Mobile:
-
 <p style="text-align: center;">
     <img alt="mobile" src="snapshots/mobile.gif">
 </p>
@@ -42,22 +40,22 @@ on Mobile:
 
 ⚠️ 使用前请确保安装以下依赖
 
-```bash
- sudo apt-get install libayatana-appindicator3-dev
- sudo apt-get install libkeybinder-3.0-dev
-```
+   ```bash
+    sudo apt-get install libayatana-appindicator3-dev
+    sudo apt-get install libkeybinder-3.0-dev
+   ```
 
 ### Android
 
 支持下列操作
 
-```bash
- com.follow.clash.action.START
-
- com.follow.clash.action.STOP
-
- com.follow.clash.action.TOGGLE
-```
+   ```bash
+    com.follow.clash.action.START
+    
+    com.follow.clash.action.STOP
+    
+    com.follow.clash.action.TOGGLE
+   ```
 
 ## Download
 
@@ -66,7 +64,6 @@ on Mobile:
 ## Build
 
 1. 更新 submodules
-
    ```bash
    git submodule update --init --recursive
    ```
@@ -74,51 +71,55 @@ on Mobile:
 2. 安装 `Flutter` 以及 `Golang` 环境
 
 3. 构建应用
-   - android
-     1. 安装 `Android SDK` , `Android NDK`
 
-     2. 设置 `ANDROID_NDK` 环境变量
+    - android
 
-     3. 运行构建脚本
+        1. 安装  `Android SDK` ,  `Android NDK`
 
-        ```bash
-        dart setup.dart android
-        ```
+        2. 设置 `ANDROID_NDK` 环境变量
 
-   - windows
-     1. 你需要一个windows客户端
+        3. 运行构建脚本
 
-     2. 安装 `GCC`，`Inno Setup`
+           ```bash
+           dart setup.dart android
+           ```
 
-     3. 运行构建脚本
+    - windows
 
-        ```bash
-        dart setup.dart windows
-        ```
+        1. 你需要一个windows客户端
 
-   - linux
-     1. 你需要一个linux客户端
+        2. 安装 `GCC`，`Inno Setup`
 
-     2. 依赖会由 setup 脚本自动安装，也可以手动安装：
+        3. 运行构建脚本
 
-        ```bash
-        sudo apt-get install -y libayatana-appindicator3-dev libkeybinder-3.0-dev
-        ```
+           ```bash
+           dart setup.dart windows
+           ```
 
-     3. 运行构建脚本
+    - linux
 
-        ```bash
-        dart setup.dart linux
-        ```
+        1. 你需要一个linux客户端
 
-   - macOS
-     1. 你需要一个macOS客户端
+        2. 依赖会由 setup 脚本自动安装，也可以手动安装：
+           ```bash
+           sudo apt-get install -y libayatana-appindicator3-dev libkeybinder-3.0-dev
+           ```
 
-     2. 运行构建脚本
+        3. 运行构建脚本
 
-        ```bash
-        dart setup.dart macos
-        ```
+           ```bash
+           dart setup.dart linux
+           ```
+
+    - macOS
+
+        1. 你需要一个macOS客户端
+
+        2. 运行构建脚本
+
+           ```bash
+           dart setup.dart macos
+           ```
 
 ## Star
 

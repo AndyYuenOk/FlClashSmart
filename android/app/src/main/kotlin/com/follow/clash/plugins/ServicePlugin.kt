@@ -23,7 +23,7 @@ class ServicePlugin : FlutterPlugin, MethodChannel.MethodCallHandler,
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         flutterMethodChannel = MethodChannel(
-            flutterPluginBinding.binaryMessenger, "${Components.CHANNEL_PACKAGE}/service"
+            flutterPluginBinding.binaryMessenger, "${Components.PACKAGE_NAME}/service"
         )
         flutterMethodChannel.setMethodCallHandler(this)
     }

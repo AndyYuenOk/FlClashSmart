@@ -20,4 +20,3 @@ data class SetupParams(
     @SerializedName("selected-map")
     val selectedMap: Map<String, String>,
 )
-
